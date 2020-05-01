@@ -15,5 +15,5 @@ after_sucess:
     - docker build -t tariqbeans/multi-worker ./worker
     # lon in to the docker CLI
     - echo "$DOCKER_PASSWORD"  |docker login -u "$DOCKER_ID" --password-stdin 
-    # take thoes images and push them to docker hub
+    # take those images and push them to docker hub
     - docker push  tariqbeans/multi-client  tariqbeans/multi-nginx  tariqbeans/multi-server  tariqbeans/multi-worker
