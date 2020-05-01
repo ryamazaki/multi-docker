@@ -16,4 +16,7 @@ after_sucess:
     # lon in to the docker CLI
     - echo "$DOCKER_PASSWORD"  |docker login -u "$DOCKER_ID" --password-stdin 
     # take those images and push them to docker hub
-    - docker push  tariqbeans/multi-client  tariqbeans/multi-nginx  tariqbeans/multi-server  tariqbeans/multi-worker
+    - docker push  tariqbeans/multi-client  
+    - docker push tariqbeans/multi-nginx  
+    - docker push tariqbeans/multi-server  
+    - docker push tariqbeans/multi-worker
