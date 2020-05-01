@@ -16,4 +16,4 @@ after_sucess:
     # lon in to the docker CLI
     - echo "$DOCKER_PASSWORD"  |docker login -u "$DOCKER_ID" --password-stdin 
     # take thoes images and push them to docker hub
-    -- docker push  ryamazaki/multi-client  ryamazaki/multi-nginx  ryamazaki/multi-server  ryamazaki/multi-worker
+    - docker push  ryamazaki/multi-client  ryamazaki/multi-nginx  ryamazaki/multi-server  ryamazaki/multi-worker
