@@ -1,0 +1,19 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t ryamazaki/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run ryamazaki/react-test npm test -- --coverage
+
+after_sucess:
+    - docker build -t ryamazaki/multi-client ./client
+    - docker build -t ryamazaki/multi-nginx ./nginx
+    - docker build -t ryamazaki/multi-server ./server
+    - docker build -t ryamazaki/multi-worker ./worker
+    # lon in to the docker CLI
+    - echo "$DOCKER_PASSWORD"  |docker login -u "$DOCKER_ID" --password-stdin 
+    # take thoes images and push them to docker hub
+    -- docker push  ryamazaki/multi-client  ryamazaki/multi-nginx  ryamazaki/multi-server  ryamazaki/multi-worker
