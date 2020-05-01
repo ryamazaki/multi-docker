@@ -3,17 +3,17 @@ services:
     - docker
 
 before_install:
-    - docker build -t ryamazaki/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t tariqbeans/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true ryamazaki/react-test npm test npm test
+    - docker run -e CI=true tariqbeans/react-test npm test npm test
 
 after_sucess:
-    - docker build -t ryamazaki/multi-client ./client
-    - docker build -t ryamazaki/multi-nginx ./nginx
-    - docker build -t ryamazaki/multi-server ./server
-    - docker build -t ryamazaki/multi-worker ./worker
+    - docker build -t tariqbeans/multi-client ./client
+    - docker build -t tariqbeans/multi-nginx ./nginx
+    - docker build -t tariqbeans/multi-server ./server
+    - docker build -t tariqbeans/multi-worker ./worker
     # lon in to the docker CLI
     - echo "$DOCKER_PASSWORD"  |docker login -u "$DOCKER_ID" --password-stdin 
     # take thoes images and push them to docker hub
-    - docker push  ryamazaki/multi-client  ryamazaki/multi-nginx  ryamazaki/multi-server  ryamazaki/multi-worker
+    - docker push  tariqbeans/multi-client  tariqbeans/multi-nginx  tariqbeans/multi-server  tariqbeans/multi-worker
