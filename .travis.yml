@@ -16,7 +16,20 @@ after_sucess:
     # lon in to the docker CLI
     - echo "$DOCKER_PASSWORD"  |docker login -u "$DOCKER_ID" --password-stdin 
     # take those images and push them to docker hub
-    - docker push  tariqbeans/multi-client  
+    - docker push tariqbeans/multi-client  
     - docker push tariqbeans/multi-nginx  
     - docker push tariqbeans/multi-server  
     - docker push tariqbeans/multi-worker
+
+    deploy:
+        provider: elasticbeanstalk
+        region: eu-west-3
+        app: multi-docker
+        env: MultiDocker-env
+        bucket_name: elasticbeanstalk-eu-west-3-066550581276
+        bucket_path: docker-multi
+    on:
+        branch: master
+        
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
