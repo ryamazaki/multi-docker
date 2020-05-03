@@ -51,5 +51,6 @@ services:
             context: ./nginx
         ports:
             - '3050:80'
+        
 
 
